@@ -1,5 +1,14 @@
 # @zanelab/lint-config
 
+<div align="center">
+  <a href="https://zanelab.vip"><img alt="zanelab logo" width="215" src="https://unpkg.com/@zanejs/icons@1.0.1/dist/logo.svg"></a>
+
+[![NPM version](https://img.shields.io/npm/v/@zanelab/lint-config)](https://npmjs.com/package/@zanelab/lint-config)
+
+**English** | [中文](./README.zh-CN.md)
+
+</div>
+
 ## setting lint config will be easy and fast
 
 a collection of

@@ -25,7 +25,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^3.8.0"
+    "@antfu/eslint-config": "^3.8.0",
+    "eslint-flat-config-utils": "^0.4.0"
   },
   "devDependencies": {
     "tsup": "^8.3.5"

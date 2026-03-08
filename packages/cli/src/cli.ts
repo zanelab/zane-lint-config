@@ -7,7 +7,7 @@ import { commandConfigPrompt, commandInitPrompt, commandInstallPrompt } from './
 /* eslint-disable ts/no-unused-expressions */
 
 yargs(hideBin(process.argv))
-  .scriptName('zanejs-lint')
+  .scriptName('zanelab-lint')
   .command('install', 'install lint tools', yargs => yargs, () => commandInstallPrompt())
   .command('config', 'config lint tool', yargs => yargs, () => commandConfigPrompt())
   .command(

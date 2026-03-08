@@ -1,1 +1,1 @@
-see [README.md](https://github.com/zanejs/lint-config#wizard-setup)
+see [README.md](https://github.com/zanelab/zane-lint-config#wizard-setup)

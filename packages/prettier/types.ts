@@ -14,6 +14,11 @@ export interface PrinterOptions {
    * @default false
    */
   useTabs: boolean
+  overrides: {
+    files: string[]
+    options: Record<string, any>
+  }[]
+
   parentParser?: string | undefined
   __embeddedInHtml?: boolean | undefined
 }

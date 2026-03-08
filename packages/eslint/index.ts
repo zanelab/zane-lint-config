@@ -7,27 +7,26 @@ import type { Linter } from 'eslint'
 import type { FlatConfigComposer } from 'eslint-flat-config-utils'
 import { antfu } from '@antfu/eslint-config'
 
-function zanejs(
+type UserConfig = Awaitable<
+  | TypedFlatConfigItem
+  | TypedFlatConfigItem[]
+  | FlatConfigComposer<any, any>
+  | Linter.Config[]
+>
+function zanelab(
   options?: OptionsConfig & Omit<TypedFlatConfigItem, 'files'>,
-  ...userConfigs: Awaitable<
-    | TypedFlatConfigItem
-    | TypedFlatConfigItem[]
-    | FlatConfigComposer<any, any>
-    | Linter.Config[]
-  >[]
+  ...userConfigs: UserConfig[]
 ) {
   return antfu(
     {
-      ...{
-        formatters: true,
-      },
+      formatters: true,
       ...options,
     },
     ...userConfigs,
   )
 }
 
-export { zanejs, zanejs as default }
+export { zanelab as default, zanelab }
 
 export {
   astro,
