@@ -1,0 +1,1 @@
+# @zanelab/prettier-config

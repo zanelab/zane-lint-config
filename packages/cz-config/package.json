@@ -1,0 +1,42 @@
+{
+  "name": "@zanelab/cz-config",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "cz config for @zanelab/lint-config",
+  "author": "zane.deng <zane.deng@foxmail.com> (https://github.com/zanelab/)",
+  "license": "MIT",
+  "repository": "https://github.com/zanelab/zane-lint-config",
+  "keywords": [],
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./lib/index.cjs"
+    },
+    "./gitmoji": {
+      "import": "./lib/gitmoji.js",
+      "require": "./lib/gitmoji.cjs"
+    },
+    "./conventional": {
+      "import": "./lib/conventional.js",
+      "require": "./lib/conventional.cjs"
+    }
+  },
+  "main": "./lib/index.cjs",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": ">=19.5.0",
+    "commitlint-config-czg-gitmoji": "*",
+    "cz-git": "^1.10.1",
+    "cz-git-gitmoji-prompts": "*",
+    "tsup": "^8.3.5"
+  }
+}

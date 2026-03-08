@@ -1,0 +1,25 @@
+{
+  "name": "@zanelab/husky-config",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "husky config for @zanelab/lint-config",
+  "author": "zane.deng <zane.deng@foxmail.com> (https://github.com/zanelab/)",
+  "license": "MIT",
+  "repository": "https://github.com/zanelab/zane-lint-config",
+  "keywords": [],
+  "exports": {
+    "import": "./lib/index.js",
+    "require": "./lib/index.cjs"
+  },
+  "main": "./lib/index.cjs",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,1 @@
+# @zanelab/husky-config

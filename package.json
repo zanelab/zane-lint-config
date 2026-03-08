@@ -1,0 +1,36 @@
+{
+  "name": "@zanelab/lint-config",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "description": "a collection for lint config",
+  "author": "zane.deng <zane.deng@foxmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "pnpm --parallel --filter \"./packages/**\" --filter \"!@zanelab/lint-cli\" build && pnpm --filter @zanelab/lint-cli build",
+    "fix:lint": "eslint packages --ext .ts  --fix",
+    "lint-staged": "lint-staged",
+    "ci:version": "changeset version && pnpm update -w && pnpm install --no-frozen-lockfile && git add .",
+    "ci:publish": "pnpm build && pnpm changeset-publish && pnpm changeset-tag",
+    "changeset-publish": "changeset publish",
+    "changeset-tag": "changeset tag",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.9",
+    "@commitlint/cli": "^19.5.0",
+    "@types/node": "^22.8.6",
+    "commitlint-config-czg-gitmoji": "^0.0.2",
+    "commitlint-config-gitmoji": "^2.3.1",
+    "cz-git": "^1.10.1",
+    "czg": "1.11.0",
+    "eslint": "^9.13.0",
+    "eslint-plugin-format": "^0.1.2",
+    "husky": "^9.1.6",
+    "jiti": "^2.3.3",
+    "lint-staged": "^15.2.10",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}
