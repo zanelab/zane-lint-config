@@ -9,146 +9,172 @@
 
 </div>
 
-## setting lint config will be easy and fast
+# One-Click Setup for Frontend Code Quality Tools
 
-a collection of
+Tired of manually configuring ESLint, Prettier, Commitlint, and other tools? This toolkit helps you set them up with a single command! It integrates the following commonly used tools with ready-to-use configurations:
 
-- eslint
-- cz(czg) + commitlint
-- lint-staged
-- husky
-- prettier
+- **ESLint**: Checks code quality and catches potential errors
+- **Prettier** (optional): Enforces consistent code style
+- **czg + commitlint**: Standardizes Git commit messages with conventional commit format
+- **lint-staged**: Runs checks only on staged files for better performance
+- **husky**: Uses Git hooks to automatically run checks before commits
 
-## Usage
+You can either use the **wizard-based automatic setup** or manually configure each tool according to your project’s needs.
 
-### Wizard Setup
+---
 
-execute the following command in your terminal, the lint tools will be installed and configured automatically.
+## 🚀 Quick Start (Wizard)
+
+Run the following command in your project root, and all tools will be installed and configured automatically:
 
 ```bash
 pnpm dlx @zanelab/lint-cli
 ```
 
-#### parameters
+### Command Parameters
 
-- `None` : no parameters means default lint tools will be installed and configured automatically.
-  - `-I`: select lint tools interactively instead of using default settings automatically.
-- `install` : only install lint tools.
-  - `-I`: install lint tools interactively.
-- `config` : only config lint tools.
-  - `-I`: config lint tools interactively.
-  - `-f`: skip all prompts and override the existing configuration.
+| Parameter     | Description                                                                                                                                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| No parameters | Installs and configures the full set of tools with default settings                                                                                                                                          |
+| `-I`          | Interactive mode: lets you choose which tools to install/configure                                                                                                                                           |
+| `install`     | Only installs the tools (does not generate config files)<br>Add `-I` to interactively select which tools to install                                                                                          |
+| `config`      | Only generates configuration files (assumes tools are already installed)<br>Add `-I` to interactively select which tools to configure<br>Add `-f` to force overwrite existing config files without prompting |
 
-> [!IMPORTANT]
-> Wizard Setup only install default lint tools and configure them according to the default settings.
-> After executing the completion command, adjustments may need to be made according to project requirements
+> ⚠️ **Note**: The wizard uses default settings to generate config files. If your project has special requirements, you can manually adjust them afterwards.
 
-### Manual Setup
+---
 
-#### eslint
+## 🛠️ Manual Setup (Use as Needed)
 
-`@zanelab/eslint-config` is based on [`@antfu/eslint-config`][antfu-eslint-config] and extends some rules.
+If you prefer finer control, follow these steps to install and configure each tool individually.
 
-##### install
+### 1. ESLint (Code Quality)
+
+Our `@zanelab/eslint-config` is based on the powerful [`@antfu/eslint-config`](https://github.com/antfu/eslint-config) and adds some practical rules.
+
+#### Installation
 
 ```bash
 pnpm add -D eslint @zanelab/eslint-config eslint-plugin-format
 ```
 
-##### config
+#### Configuration
 
-create `eslint.config.js`
+Create an `eslint.config.js` file in your project root:
+
+**For ES modules (`"type": "module"`)**
 
 ```js
-// for "type": "module"
 import { zanelab } from '@zanelab/eslint-config'
 export default zanelab()
 ```
 
+**For CommonJS (`"type": "commonjs"`)**
+
 ```js
-// for "type": "commonjs"
 const { zanelab } = require('@zanelab/eslint-config')
 module.exports = zanelab()
 ```
 
-#### cz(czg) + commitlint
+### 2. czg + commitlint (Commit Message Standardization)
 
-use [`czg`](https://cz-git.qbb.sh/) to generate commit messages. And use [`commitlint`](https://commitlint.js.org/) to lint commit messages.
+- **czg**: Generates commit messages interactively following the Conventional Commits spec
+- **commitlint**: Validates commit messages against the spec
 
-##### install
+#### Installation
 
 ```bash
 pnpm add -D @commitlint/cli czg @zanelab/cz-config
 ```
 
-##### config
+#### Configuration
 
-create `commitlint.config.js`
+Create a `commitlint.config.js` file:
+
+**ES modules**
 
 ```js
-// for "type": "module"
 import { config } from '@zanelab/cz-config/commitlint'
 export default config
+```
 
-// for "type": "commonjs"
+**CommonJS**
+
+```js
 module.exports = require('@zanelab/cz-config')
 ```
 
-#### lint-staged
+### 3. lint-staged (Check Only Staged Files)
 
-##### install
+Works with husky to run checks only on files that are staged for commit, making it faster.
+
+#### Installation
 
 ```bash
 pnpm add -D lint-staged @zanelab/lint-staged
 ```
 
-##### config
+#### Configuration
 
-create `lint-staged.config.js`
+Create a `lint-staged.config.js` file:
+
+**ES modules**
 
 ```js
-// for "type": "module"
 import config from '@zanelab/lint-staged'
 export default config
+```
 
-// for "type": "commonjs"
+**CommonJS**
+
+```js
 module.exports = require('@zanelab/lint-staged')
 ```
 
-### husky
+### 4. husky (Git Hooks Management)
 
-#### config
+Used to run scripts automatically before Git operations (like commit, push).
 
-follow the [husky](https://typicode.github.io/husky/) official documentation to config.
-And copy the husky config from [`@zanelab/husky-config`](./packages/husky/index.ts) to your project.
+#### Configuration
 
-#### prettier(not recommended)
+1. Follow the [husky official documentation](https://typicode.github.io/husky/) to install and initialize husky.
+2. Copy the hook scripts from [`@zanelab/husky-config`](./packages/husky/index.ts) into your `.husky/` directory. For example, you might run `lint-staged` in the `pre-commit` hook and `commitlint` in the `commit-msg` hook.
 
-> it is not recommended use `prettier` to format code, since following the philosophy of [`@antfu/eslint-config`][antfu-eslint-config].
+### 5. Prettier (Code Formatting, Optional)
 
-##### install
+> We recommend using ESLint's formatting capabilities (following the philosophy of `@antfu/eslint-config`), so Prettier is optional. If you're used to Prettier, you can install it separately.
+
+#### Installation
 
 ```bash
 pnpm add -D prettier @zanelab/prettier-config
 ```
 
-##### config
+#### Configuration
 
-create `prettier.config.js`
+Create a `prettier.config.js` file:
+
+**ES modules**
 
 ```js
-// for "type": "module"
 import config from '@zanelab/prettier-config'
 export default config
+```
 
-// for "type": "commonjs"
+**CommonJS**
+
+```js
 module.exports = require('@zanelab/prettier-config')
 ```
 
-Inspired by
+---
+
+## 🙏 Acknowledgements
+
+This toolkit's concepts and configurations draw inspiration from the following excellent projects:
 
 - [@c4605/toolconfs](https://www.npmjs.com/package/@c4605/toolconfs)
 - [@antfu/eslint-config](https://github.com/antfu/eslint-config)
 - [@fantasticit/code-lint](https://github.com/fantasticit/code-lint)
 
-[antfu-eslint-config]: https://github.com/antfu/eslint-config
+Thanks to the authors of these projects for providing such convenient configuration solutions!
